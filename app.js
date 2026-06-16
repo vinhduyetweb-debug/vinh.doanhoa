@@ -130,12 +130,12 @@
   function startRound() {
     if (state.answered) return;
     state.currentFlower = FLOWERS[state.currentIndex];
-    els.bloomButton.classList.add("awake");
-    els.tapCta.textContent = "Cánh hoa đang hé mở...";
+    els.bloomButton.classList.add("awake", "is-blooming", "burst");
+    els.tapCta.textContent = "Nụ hoa đang thức dậy...";
     els.stageHint.textContent = "Bé xem gợi ý rồi chọn đáp án nhé.";
     playTone("tap");
     window.setTimeout(function () {
-      els.bloomButton.classList.remove("awake");
+      els.bloomButton.classList.remove("awake", "is-blooming");
       showQuestion();
     }, 420);
   }
@@ -163,7 +163,7 @@
     if (state.answered) return;
     if (flower.id !== state.currentFlower.id) {
       button.classList.add("wrong");
-      els.feedbackText.textContent = "Thử lại nhé, bé sắp đoán ra rồi!";
+      els.feedbackText.textContent = "Thử lại nhé, bông hoa sắp nở rồi!";
       playTone("wrong");
       return;
     }
@@ -181,8 +181,9 @@
 
   function showResult() {
     els.bloomButton.classList.add("revealed");
+    els.bloomButton.classList.add("has-bloomed");
     els.bloomEmoji.textContent = state.currentFlower.emoji;
-    els.tapCta.textContent = "Bé chọn đúng rồi!";
+    els.tapCta.textContent = "Bé chọn đúng rồi! Bông hoa đã nở!";
     els.flowerReveal.innerHTML = "";
     var imagePath = FLOWER_IMAGES[state.currentFlower.name];
     var img = document.createElement("img");
@@ -195,6 +196,7 @@
     els.resultName.textContent = state.currentFlower.name;
     els.resultFact.textContent = FLOWER_WOW_FACTS[state.currentFlower.name];
     els.resultPanel.classList.remove("hidden");
+    els.resultPanel.classList.add("celebrate");
     els.questionPanel.classList.add("hidden");
   }
 
@@ -208,12 +210,13 @@
   function resetStage() {
     state.currentFlower = FLOWERS[state.currentIndex];
     state.answered = false;
-    els.bloomButton.classList.remove("awake", "revealed");
+    els.bloomButton.classList.remove("awake", "is-blooming", "has-bloomed", "burst", "revealed");
     els.bloomEmoji.textContent = "🌱";
     els.tapCta.textContent = "Chạm vào nụ hoa";
     els.stageHint.textContent = "Một bông hoa bí mật đang chờ bé đánh thức.";
     els.questionPanel.classList.add("hidden");
     els.resultPanel.classList.add("hidden");
+    els.resultPanel.classList.remove("celebrate");
     els.feedbackText.textContent = "";
   }
 

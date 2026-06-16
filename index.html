@@ -28,6 +28,14 @@
         <div class="floating-petal petal-one"></div>
         <div class="floating-petal petal-two"></div>
         <div class="floating-petal petal-three"></div>
+        <div class="sparkle-field" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
 
         <div class="stage-copy">
           <p class="round-label" id="scoreText">Điểm vui: 0</p>
@@ -42,7 +50,10 @@
             <span class="bud-petal left"></span>
             <span class="bud-core"></span>
             <span class="bud-petal right"></span>
+            <span class="seed-crack"></span>
           </span>
+          <span class="burst-ring" aria-hidden="true"></span>
+          <span class="mini-bloom" aria-hidden="true">✿</span>
           <span class="bloom-emoji" id="bloomEmoji" aria-hidden="true">🌱</span>
         </button>
 
@@ -59,6 +70,12 @@
 
       <section class="result-panel hidden" id="resultPanel" aria-live="polite">
         <p class="soft-label">Bông hoa đã nở!</p>
+        <div class="result-sparkles" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
         <div class="flower-reveal" id="flowerReveal"></div>
         <h2 id="resultName"></h2>
         <p class="fact-title">Điều kỳ diệu về loài hoa này</p>

@@ -2,6 +2,8 @@
 
 Mini app static cho trẻ em đoán tên 61 loài hoa qua gợi ý nhỏ, chạm nụ hoa và xem bông hoa nở. App không backend, không framework, không database và không có build step.
 
+UI hiện tại: V1.1.2 - Magic Bloom UI Parity Pack.
+
 ## Cách mở local
 
 Mở trực tiếp `index.html` trong trình duyệt, hoặc dùng static server:

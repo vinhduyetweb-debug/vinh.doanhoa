@@ -1,0 +1,9 @@
+{
+  "name": "Bé Đoán Loài Hoa",
+  "short_name": "Đoán Hoa",
+  "description": "Magic Bloom Pro - mini game đoán loài hoa cho trẻ em.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#fffaf0",
+  "theme_color": "#7dbb7b"
+}

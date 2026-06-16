@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#7dbb7b">
+  <meta name="description" content="Bé Đoán Loài Hoa - Magic Bloom Pro, mini game đoán hoa cho trẻ em.">
+  <title>Bé Đoán Loài Hoa - Magic Bloom Pro</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="garden-shell">
+    <header class="app-header">
+      <div>
+        <p class="eyebrow">Magic Bloom Pro</p>
+        <h1>Bé Đoán Loài Hoa</h1>
+        <p class="tagline">Chạm nụ hoa, đoán đúng, khu vườn nở rộ!</p>
+      </div>
+      <div class="header-actions">
+        <div class="progress-pill" id="progressText">Vườn hoa của bé: 0/61</div>
+        <button class="icon-button" id="soundToggle" type="button" aria-label="Bật tắt âm thanh" title="Bật tắt âm thanh">Âm</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="stage-panel" aria-labelledby="stageTitle">
+        <div class="floating-petal petal-one"></div>
+        <div class="floating-petal petal-two"></div>
+        <div class="floating-petal petal-three"></div>
+
+        <div class="stage-copy">
+          <p class="round-label" id="scoreText">Điểm vui: 0</p>
+          <h2 id="stageTitle">Chạm vào nụ hoa</h2>
+          <p id="stageHint">Một bông hoa bí mật đang chờ bé đánh thức.</p>
+        </div>
+
+        <button class="bloom-button" id="bloomButton" type="button" aria-label="Chạm vào nụ hoa">
+          <span class="halo"></span>
+          <span class="stem"></span>
+          <span class="bud">
+            <span class="bud-petal left"></span>
+            <span class="bud-core"></span>
+            <span class="bud-petal right"></span>
+          </span>
+          <span class="bloom-emoji" id="bloomEmoji" aria-hidden="true">🌱</span>
+        </button>
+
+        <p class="tap-cta" id="tapCta">Chạm vào nụ hoa</p>
+      </section>
+
+      <section class="question-panel hidden" id="questionPanel" aria-labelledby="questionTitle">
+        <p class="soft-label">Gợi ý nhỏ</p>
+        <h2 id="questionTitle">Đố bé đây là hoa gì?</h2>
+        <p class="hint-card" id="hintText"></p>
+        <div class="answers-grid" id="answersGrid"></div>
+        <p class="feedback" id="feedbackText" aria-live="polite"></p>
+      </section>
+
+      <section class="result-panel hidden" id="resultPanel" aria-live="polite">
+        <p class="soft-label">Bông hoa đã nở!</p>
+        <div class="flower-reveal" id="flowerReveal"></div>
+        <h2 id="resultName"></h2>
+        <p class="fact-title">Điều kỳ diệu về loài hoa này</p>
+        <p class="fact-text" id="resultFact"></p>
+        <button class="primary-button" id="nextButton" type="button">Trồng bông hoa tiếp theo</button>
+      </section>
+
+      <section class="collection-panel" aria-labelledby="collectionTitle">
+        <div class="section-heading">
+          <div>
+            <p class="soft-label">Bộ sưu tập hoa</p>
+            <h2 id="collectionTitle">Vườn hoa của bé</h2>
+          </div>
+          <button class="text-button" id="resetButton" type="button">Gieo lại từ đầu</button>
+        </div>
+        <div class="collection-grid" id="collectionGrid"></div>
+      </section>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

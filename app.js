@@ -97,6 +97,7 @@
     soundToggle: document.getElementById("soundToggle"),
     bloomButton: document.getElementById("bloomButton"),
     bloomEmoji: document.getElementById("bloomEmoji"),
+    miniFlowerReveal: document.getElementById("miniFlowerReveal"),
     tapCta: document.getElementById("tapCta"),
     stageHint: document.getElementById("stageHint"),
     questionPanel: document.getElementById("questionPanel"),
@@ -129,15 +130,21 @@
 
   function startRound() {
     if (state.answered) return;
+    if (els.bloomButton.classList.contains("is-blooming")) return;
     state.currentFlower = FLOWERS[state.currentIndex];
+    renderMiniFlowerReveal(state.currentFlower);
     els.bloomButton.classList.add("awake", "is-blooming", "burst");
     els.tapCta.textContent = "Nụ hoa đang thức dậy...";
     els.stageHint.textContent = "Bé xem gợi ý rồi chọn đáp án nhé.";
     playTone("tap");
     window.setTimeout(function () {
+      els.bloomButton.classList.add("has-mini-reveal");
+      els.tapCta.textContent = "Nụ hoa hé mở rồi!";
+    }, 280);
+    window.setTimeout(function () {
       els.bloomButton.classList.remove("awake", "is-blooming");
       showQuestion();
-    }, 420);
+    }, 680);
   }
 
   function showQuestion() {
@@ -210,14 +217,38 @@
   function resetStage() {
     state.currentFlower = FLOWERS[state.currentIndex];
     state.answered = false;
-    els.bloomButton.classList.remove("awake", "is-blooming", "has-bloomed", "burst", "revealed");
+    els.bloomButton.classList.remove("awake", "is-blooming", "has-mini-reveal", "has-bloomed", "burst", "revealed");
     els.bloomEmoji.textContent = "🌱";
+    els.miniFlowerReveal.innerHTML = "";
+    els.miniFlowerReveal.classList.remove("mini-flower-emoji");
     els.tapCta.textContent = "Chạm vào nụ hoa";
     els.stageHint.textContent = "Một bông hoa bí mật đang chờ bé đánh thức.";
     els.questionPanel.classList.add("hidden");
     els.resultPanel.classList.add("hidden");
     els.resultPanel.classList.remove("celebrate");
     els.feedbackText.textContent = "";
+  }
+
+  function renderMiniFlowerReveal(flower) {
+    var imagePath = flower.image || FLOWER_IMAGES[flower.name];
+    els.miniFlowerReveal.innerHTML = "";
+    els.miniFlowerReveal.classList.remove("mini-flower-emoji");
+
+    if (!imagePath) {
+      els.miniFlowerReveal.textContent = flower.emoji;
+      els.miniFlowerReveal.classList.add("mini-flower-emoji");
+      return;
+    }
+
+    var img = document.createElement("img");
+    img.alt = "";
+    img.src = imagePath;
+    img.onerror = function () {
+      els.miniFlowerReveal.innerHTML = "";
+      els.miniFlowerReveal.textContent = flower.emoji;
+      els.miniFlowerReveal.classList.add("mini-flower-emoji");
+    };
+    els.miniFlowerReveal.appendChild(img);
   }
 
   function makeAnswers(correctFlower) {
